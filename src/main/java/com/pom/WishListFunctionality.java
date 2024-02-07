@@ -2,11 +2,15 @@ package com.pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class WishListFunctionality {
+import com.base.TestBase;
+
+public class WishListFunctionality extends TestBase {
+	
 
 	@FindBy(xpath="//div[@class='d-flex d-block']//a[@href=\"https://e-quarz.com/product/water-bottle-nqMmRX\"]")
 	WebElement waterbottle;
@@ -38,12 +42,23 @@ public class WishListFunctionality {
 	@FindBy(xpath="//i[@onclick=\"removeWishlist('1564')\"]")
 	WebElement removevermi;
 	
+	@FindBy(xpath="//a[@class=\"d-block h-100\"][@href=\"https://e-quarz.com/product/water-bottle-nqMmRX\"]")
+	WebElement buybottle;
+	
+	@FindBy(xpath="//span[text()='Buy now']")
+	WebElement buynow;
+	
+	
+	
+	
+	
 	
 	
 	
 	
 	@FindBy(xpath="//span[@class='countWishlist']")
-	WebElement wishcount; 
+	WebElement wishcount;
+	
 	
 	public WishListFunctionality(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -69,6 +84,7 @@ public class WishListFunctionality {
 		iphonewishlist.click();
 	}
 	
+	
 	public void wishlistremove() {
 		wishlist.click();
 		removevermi.click();
@@ -80,6 +96,9 @@ public class WishListFunctionality {
 		System.out.println(str);
 	}
 	
-	
-
+	public void buynow_functionality() {
+		wishlist.click();
+		buybottle.click();
+		buynow.click();
+	}
 }

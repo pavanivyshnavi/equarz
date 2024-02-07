@@ -25,7 +25,7 @@ public class Wishlisttest extends TestBase {
 		
 	}
 	@Test(priority=1)
-	public void wishlist() {
+	public void AddTowishlist() {
 		wlf.bottle();
 		wlf.homepage();
 		wlf.compost();
@@ -40,10 +40,16 @@ public class Wishlisttest extends TestBase {
 	}
 	
 		@Test(priority=3)
-		public void countwishlist() {
+		public void veify_wishlistcount() {
 			wlf.wishlistcount();
 			
 		}
+		@Test(priority=4)
+		public void verifybuynow_functionality() {
+			wlf.buynow_functionality();
+			
+		}
+		
 	
 	@AfterMethod()
 		public void teardown() {
