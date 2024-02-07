@@ -1,6 +1,8 @@
 package com.utils;
 
 import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +10,14 @@ import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class Utils {
 	
 	//Store all commonly used methods for method reusablity purpose 
 	static String filepath="./src/main/java/com/testdata/equartz.xlsx";
-	public static Robot rb;
+	
 	
 	public static String[][] setdata(String sheetname) throws Throwable{
 		File file=new File(filepath);
@@ -38,17 +42,34 @@ public class Utils {
 		workbook.close();
 		return data;
 	}
+	
+	public  void dropdown(WebElement value, String text) {
+		Select sel = new Select(value);
+		sel.selectByValue(text);
+
+	}
 
 	public static void keysRobot() throws Throwable {
-		rb=new Robot();
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-	}
-	
-	public static void enterRobot() throws Throwable {
-		rb=new Robot();
-		rb.keyPress(KeyEvent.VK_ENTER);
-		rb.keyRelease(KeyEvent.VK_ENTER);
+		 Robot rb=new Robot();
+		 rb.delay(3000);
+			StringSelection ss=new StringSelection("C:\\Users\\admin\\Desktop\\vyshu marolix\\Selenium Full Material.pdf");
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);//copy to clipboard
+			
+			//ctrl+v action
+			rb.keyPress(KeyEvent.VK_CONTROL);//press on ctrl key
+			rb.keyPress(KeyEvent.VK_V);//ctrlv action
+			rb.delay(3000);
+			 
+			rb.keyRelease(KeyEvent.VK_CONTROL);
+			rb.keyRelease(KeyEvent.VK_V);
+			rb.delay(3000);
+			
+			//enter key
+			rb.keyPress(KeyEvent.VK_ENTER);
+			rb.keyRelease(KeyEvent.VK_ENTER);
+			
+			Thread.sleep(3000);
+			
 	}
 	
 
